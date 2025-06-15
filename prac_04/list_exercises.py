@@ -22,4 +22,3 @@ if get_user in usernames:
     print("You entered {}... Welcome".format(get_user))
 else:
     print("Access Denied")
-

@@ -28,8 +28,10 @@ def load_data():
     input_file.close()
     return record
 
+
 def display_data(record):
     for parts in record:
-        print("{} is taught by {:12} and has {:3} students". format(parts[0], parts[1], parts[2]))
+        print("{} is taught by {:12} and has {:3} students".format(parts[0], parts[1], parts[2]))
+
 
 main()
