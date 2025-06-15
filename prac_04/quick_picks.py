@@ -6,6 +6,13 @@ MAX = 45
 MIN = 1
 NUMBER = 6
 
+def main():
+    get_picks = int(input("How many picks would you like to generate? "))
+    for n in range(get_picks):
+        picks = sort_pick()
+        line = " ".join(f"{n:2}" for n in picks)
+        print(line)
+
 def sort_pick():
     picks = []
     while len(picks) < NUMBER:
@@ -15,11 +22,6 @@ def sort_pick():
     picks.sort()
     return picks
 
-def main():
-    get_picks = int(input("How many picks would you like to generate? "))
-    for n in range(get_picks):
-        picks = sort_pick()
-        line = " ".join(f"{n:2}" for n in picks)
-        print(line)
+
 
 main()
