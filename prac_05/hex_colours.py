@@ -10,7 +10,7 @@ get_hex = input("Enter a colour name: ").lower()
 
 while get_hex != "":
     try:
-        print(f"{get_hex} is {COLOUR_TO_HEX[get_hex]}")
+        print(f"{COLOUR_TO_HEX[get_hex]}")
     except KeyError:
         print("Invalid state")
     get_hex = input("Enter a colour name: ").lower()
