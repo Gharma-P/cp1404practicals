@@ -6,11 +6,11 @@ class Guitar:
 
     def __init__(self, name, year, cost):
         self.name = name
-        self.year = int(0)
-        self.cost = float(0.00)
+        self.year = year
+        self.cost = cost
 
     def __str__(self):
-        return f"Name: {self.name}, Year: {self.year}, Cost: {self.cost:2f}"
+        return f"Name: {self.name}, Year: {self.year}, Cost: {self.cost}"
 
     def get_age(self):
         current_year = date.today().year
@@ -18,5 +18,8 @@ class Guitar:
 
     def is_vintage(self):
         return self.get_age() >= 50
+
+    def __lt__(self, other):
+        return self.year < other.year
 
 
