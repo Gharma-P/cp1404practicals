@@ -4,19 +4,10 @@ This program handles user interaction through a menu driven loop
 from project import Project
 from datetime import datetime
 
-
-def display_menu():
-    print("(L)oad projects")
-    print("(S)ave projects")
-    print("(D)isplay projects")
-    print("(F)ilter projects by date")
-    print("(A)dd new project")
-    print("(U)pdate project")
-    print("(Q)uit")
+FILE_NAME = "projects.txt"
 
 
-def load_projects_from_file():
-    filename = input("Enter filename to load projects from:")
+def load_projects_from_file(filename):
     projects = []
     try:
         with open(filename, "r") as file:
@@ -38,9 +29,8 @@ def load_projects_from_file():
     return projects
 
 
-def save_projects_to_file(projects):
-    filename = input("Enter filename to save projects to:")
-
+def save_projects_to_file(projects, filename):
+    # filename = input("Enter filename to save projects to:")
     try:
         with open(filename, "w") as file:
             file.write("Name\tStart Date\tPriority\tCost\tCompletion\n")
@@ -128,6 +118,7 @@ def get_valid_float(prompt):
     except ValueError:
         return get_valid_float(prompt)
 
+
 def update_project(projects):
     if not projects:
         print("No projects to update")
@@ -153,7 +144,7 @@ def update_project(projects):
         except ValueError:
             print("Invalid input")
 
-    new_completion = input (f"New completion % (leave blank to keep {project.completion}):").strip()
+    new_completion = input(f"New completion % (leave blank to keep {project.completion}):").strip()
     if new_completion != "":
         try:
             completion = int(new_completion)
@@ -162,14 +153,56 @@ def update_project(projects):
             else:
                 print("Invalid input must be between 0 and 100.")
         except ValueError:
-                print("Invalid input. Not updated")
+            print("Invalid input. Not updated")
     print("Project updated")
+
 
 def main():
     """Read a text file and sort"""
+    projects = []
     print("Welcome to Pythonic Project Management")
-    display_menu()
-    load_projects_from_file()
+    choice = ""
+    while choice != "q":
+        print("Menu:")
+        print("- (L)oad projects")
+        print("- (S)ave projects")
+        print("- (D)isplay projects")
+        print("- (F)ilter projects by date")
+        print("- (A)dd new project")
+        print("- (U)pdate project")
+        print("- (Q)uit")
+
+        choice = input(">>> ").strip().lower()
+
+        if choice == "l":
+            filename = "projects.txt"
+            projects = load_projects_from_file(filename)
+
+        elif choice == "s":
+            filename = input("Filename to save: ").strip()
+            save_projects_to_file(projects, filename)
+
+        elif choice == "d":
+            display_projects(projects)
+
+        elif choice == "f":
+            filter_projects_by_date(projects)
+
+        elif choice == "a":
+            add_new_project(projects)
+
+        elif choice == "u":
+            update_project(projects)
+
+        elif choice == "q":
+            save = input("Would you like to save projects.txt? (y/n)").strip
+            if save == "y":
+                filename = input("Filename to save: ").strip()
+                save_projects_to_file(projects, filename)
+            print("Thankyou for using custom built project management software")
+
+        else:
+            print("Invalid input")
 
 
 main()
