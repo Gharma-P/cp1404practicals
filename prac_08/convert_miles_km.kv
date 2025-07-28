@@ -1,0 +1,28 @@
+BoxLayout:
+    orientation: 'vertical'
+    BoxLayout:
+        orientation: 'horizontal'
+        TextInput:
+            id: user_input
+            multiline: False
+            # This event is when the user enters text (and presses Enter)
+            on_text: app.calculation()
+        BoxLayout:
+            orientation: 'vertical'
+            Button: #increase by one
+                id: increase
+                text: 'Up'
+                on_press: app.increment(1)
+            Button: #decrease by one
+                id: decrease
+                text: 'Down'
+                on_press: app.increment(-1)
+
+    Button:
+        text: 'Convert miles to kms'
+
+    Label:
+        text: app.result
+        font_size: 30
+        color: (1, 1, 0, 1)
+
